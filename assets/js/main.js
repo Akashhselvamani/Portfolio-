@@ -226,4 +226,67 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  /**
+   * Hero Particles Generation
+   */
+  function createParticles() {
+    const container = document.querySelector('#hero-particles');
+    if (!container) return;
+
+    const particleCount = 50;
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      
+      // Random size
+      const size = Math.random() * 5 + 1;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      
+      // Random position
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = `${Math.random() * 100}%`;
+      
+      // Random opacity
+      particle.style.opacity = Math.random() * 0.5;
+      
+      // Random float duration (parallax depth emulation)
+      const duration = Math.random() * 20 + 10;
+      particle.style.animation = `float ${duration}s linear infinite`;
+      particle.style.animationDelay = `-${Math.random() * 20}s`;
+      
+      container.appendChild(particle);
+    }
+  }
+  window.addEventListener('load', createParticles);
+
+  /**
+   * Hero Parallax Effect
+   */
+  const hero = document.querySelector('#hero');
+  if (hero) {
+    hero.addEventListener('mousemove', (e) => {
+      const cards = document.querySelectorAll('.floating-card');
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+
+      const moveX = (clientX - innerWidth / 2) / 25;
+      const moveY = (clientY - innerHeight / 2) / 25;
+
+      cards.forEach((card, index) => {
+        const factor = (index + 1) * 0.5;
+        card.style.transform = `translate(${moveX * factor}px, ${moveY * factor}px)`;
+      });
+      
+      // Subtle movement for particles too
+      const particles = document.querySelectorAll('.particle');
+      particles.forEach((p, i) => {
+          if (i % 5 === 0) { // Only move every 5th particle for performance
+              const pFactor = (i % 3 + 1) * 0.2;
+              p.style.transform = `translate(${moveX * pFactor}px, ${moveY * pFactor}px)`;
+          }
+      });
+    });
+  }
+
 })();
