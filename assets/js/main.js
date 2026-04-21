@@ -6,7 +6,7 @@
 * License: https://bootstrapmade.com/license/
 */
 
-(function() {
+(function () {
   "use strict";
 
   /**
@@ -37,7 +37,7 @@
    * Toggle mobile nav dropdowns
    */
   document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
+    navmenu.addEventListener('click', function (e) {
       e.preventDefault();
       this.parentNode.classList.toggle('active');
       this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
@@ -111,17 +111,48 @@
   new PureCounter();
 
   /**
-   * Animate the skills items on reveal
+   * Animate the skills items on reveal with stagger & counter
    */
   let skillsAnimation = document.querySelectorAll('.skills-animation');
   skillsAnimation.forEach((item) => {
     new Waypoint({
       element: item,
       offset: '80%',
-      handler: function(direction) {
+      handler: function (direction) {
         let progress = item.querySelectorAll('.progress .progress-bar');
-        progress.forEach(el => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%';
+        let vals = item.querySelectorAll('.progress .val');
+
+        progress.forEach((el, index) => {
+          let targetValue = el.getAttribute('aria-valuenow');
+          let duration = 1500; // Total animation duration
+
+          // Apply stagger delay to each bar
+          el.style.transitionDelay = (index * 0.15) + 's';
+          el.style.width = targetValue + '%';
+
+          // Animate the text percentage
+          setTimeout(() => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+              if (!startTimestamp) startTimestamp = timestamp;
+              const progressRatio = Math.min((timestamp - startTimestamp) / duration, 1);
+              // Ease out quart
+              const easeOut = 1 - Math.pow(1 - progressRatio, 4);
+              const currentVal = Math.floor(easeOut * targetValue);
+
+              if (vals[index]) {
+                vals[index].innerText = currentVal + '%';
+              }
+
+              if (progressRatio < 1) {
+                window.requestAnimationFrame(step);
+              } else {
+                if (vals[index]) vals[index].innerText = targetValue + '%';
+              }
+            };
+            window.requestAnimationFrame(step);
+          }, index * 150); // Start text animation delay synced with bar delay
+
         });
       }
     });
@@ -137,13 +168,13 @@
   /**
    * Init isotope layout and filters
    */
-  document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
+  document.querySelectorAll('.isotope-layout').forEach(function (isotopeItem) {
     let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
     let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
     let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
 
     let initIsotope;
-    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
+    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function () {
       initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
         itemSelector: '.isotope-item',
         layoutMode: layout,
@@ -152,8 +183,8 @@
       });
     });
 
-    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
-      filters.addEventListener('click', function() {
+    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function (filters) {
+      filters.addEventListener('click', function () {
         isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
         this.classList.add('filter-active');
         initIsotope.arrange({
@@ -171,7 +202,7 @@
    * Init swiper sliders
    */
   function initSwiper() {
-    document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
+    document.querySelectorAll(".init-swiper").forEach(function (swiperElement) {
       let config = JSON.parse(
         swiperElement.querySelector(".swiper-config").innerHTML.trim()
       );
@@ -189,7 +220,7 @@
   /**
    * Correct scrolling position upon page load for URLs containing hash links.
    */
-  window.addEventListener('load', function(e) {
+  window.addEventListener('load', function (e) {
     if (window.location.hash) {
       if (document.querySelector(window.location.hash)) {
         setTimeout(() => {
@@ -237,24 +268,24 @@
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div');
       particle.className = 'particle';
-      
+
       // Random size
       const size = Math.random() * 5 + 1;
       particle.style.width = `${size}px`;
       particle.style.height = `${size}px`;
-      
+
       // Random position
       particle.style.left = `${Math.random() * 100}%`;
       particle.style.top = `${Math.random() * 100}%`;
-      
+
       // Random opacity
       particle.style.opacity = Math.random() * 0.5;
-      
+
       // Random float duration (parallax depth emulation)
       const duration = Math.random() * 20 + 10;
       particle.style.animation = `float ${duration}s linear infinite`;
       particle.style.animationDelay = `-${Math.random() * 20}s`;
-      
+
       container.appendChild(particle);
     }
   }
@@ -277,14 +308,14 @@
         const factor = (index + 1) * 0.5;
         card.style.transform = `translate(${moveX * factor}px, ${moveY * factor}px)`;
       });
-      
+
       // Subtle movement for particles too
       const particles = document.querySelectorAll('.particle');
       particles.forEach((p, i) => {
-          if (i % 5 === 0) { // Only move every 5th particle for performance
-              const pFactor = (i % 3 + 1) * 0.2;
-              p.style.transform = `translate(${moveX * pFactor}px, ${moveY * pFactor}px)`;
-          }
+        if (i % 5 === 0) { // Only move every 5th particle for performance
+          const pFactor = (i % 3 + 1) * 0.2;
+          p.style.transform = `translate(${moveX * pFactor}px, ${moveY * pFactor}px)`;
+        }
       });
     });
   }

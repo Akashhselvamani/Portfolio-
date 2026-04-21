@@ -764,40 +764,54 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Skills Section
+# Skills Section (Premium Modern Aesthetic)
 --------------------------------------------------------------*/
 .skills .progress {
-  height: 60px;
+  height: auto;
   display: block;
   background: none;
   border-radius: 0;
+  margin-bottom: 30px;
 }
 
 .skills .progress .skill {
-  color: var(--heading-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 12px 0;
   padding: 0;
-  margin: 0 0 6px 0;
-  text-transform: uppercase;
-  display: block;
-  font-weight: 600;
-  font-family: var(--heading-font);
+  font-family: var(--nav-font);
+}
+
+.skills .progress .skill span {
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--heading-color);
+  letter-spacing: 0.5px;
 }
 
 .skills .progress .skill .val {
-  float: right;
+  font-weight: 700;
+  color: var(--accent-secondary);
   font-style: normal;
+  font-family: var(--heading-font);
 }
 
 .skills .progress-bar-wrap {
-  background: color-mix(in srgb, var(--default-color), transparent 90%);
-  height: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  height: 8px;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .skills .progress-bar {
   width: 1px;
-  height: 10px;
-  transition: 0.9s;
-  background-color: var(--accent-color);
+  height: 8px;
+  border-radius: 12px;
+  transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
+  box-shadow: 0 0 10px color-mix(in srgb, var(--accent-secondary), transparent 70%);
 }
 
 /*--------------------------------------------------------------
@@ -1532,42 +1546,7 @@ section,
   box-shadow: 0 0 15px var(--accent-secondary);
 }
 
-/* Pulsing Neon Progress Bars */
-.skills .progress {
-  height: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  margin-bottom: 25px;
-  overflow: visible;
-}
-
-.skills .progress-bar {
-  background: linear-gradient(90deg, var(--accent-secondary), var(--accent-color)) !important;
-  box-shadow: 0 0 15px var(--accent-secondary);
-  border-radius: 10px;
-  position: relative;
-}
-
-.skills .progress-bar::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  animation: shine 2s infinite;
-}
-
-@keyframes shine {
-  0% {
-    transform: translateX(-100%);
-  }
-
-  100% {
-    transform: translateX(100%);
-  }
-}
+/* Pulsing Neon Progress Bars Removed for clean aesthetic */
 
 /* Futuristic List Items (Resume) */
 .resume .resume-item {
