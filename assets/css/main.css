@@ -12,33 +12,44 @@
 --------------------------------------------------------------*/
 /* Fonts */
 :root {
-  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Raleway",  sans-serif;
-  --nav-font: "Poppins",  sans-serif;
+  --default-font: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Raleway", sans-serif;
+  --nav-font: "Poppins", sans-serif;
 }
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
-:root { 
-  --background-color: #0a0a0f; /* Deep dark background */
-  --default-color: #cbd5e1; /* Soft gray for readability */
-  --heading-color: #ffffff; /* White for headings */
-  --accent-color: #8b5cf6; /* Vibrant Violet Accent */
-  --accent-secondary: #06b6d4; /* Vibrant Cyan Secondary Accent */
-  --surface-color: rgba(21, 25, 43, 0.6); /* Glassmorphic dark surface */
-  --contrast-color: #ffffff; 
+:root {
+  --background-color: #0a0a0f;
+  /* Deep dark background */
+  --default-color: #cbd5e1;
+  /* Soft gray for readability */
+  --heading-color: #ffffff;
+  /* White for headings */
+  --accent-color: #8b5cf6;
+  /* Vibrant Violet Accent */
+  --accent-secondary: #06b6d4;
+  /* Vibrant Cyan Secondary Accent */
+  --surface-color: rgba(21, 25, 43, 0.6);
+  /* Glassmorphic dark surface */
+  --contrast-color: #ffffff;
 }
 
-.text-accent { color: var(--accent-color) !important; }
-.text-accent-secondary { color: var(--accent-secondary) !important; }
+.text-accent {
+  color: var(--accent-color) !important;
+}
+
+.text-accent-secondary {
+  color: var(--accent-secondary) !important;
+}
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-  --nav-color: #a8a9b4;  
-  --nav-hover-color: #06b6d4; 
-  --nav-mobile-background-color: rgba(10, 10, 15, 0.95); 
-  --nav-dropdown-background-color: rgba(10, 10, 15, 0.95); 
-  --nav-dropdown-color: #a8a9b4; 
-  --nav-dropdown-hover-color: #06b6d4; 
+  --nav-color: #a8a9b4;
+  --nav-hover-color: #06b6d4;
+  --nav-mobile-background-color: rgba(10, 10, 15, 0.95);
+  --nav-dropdown-background-color: rgba(10, 10, 15, 0.95);
+  --nav-dropdown-color: #a8a9b4;
+  --nav-dropdown-hover-color: #06b6d4;
 }
 
 /* Color Presets - Enforcing modern dark theme across the board */
@@ -91,34 +102,101 @@ h6 {
   font-family: var(--heading-font);
 }
 
-/* PHP Email Form Messages
+/* PHP Email Form Stylings & Messages
 ------------------------------*/
+.php-email-form {
+  background: var(--surface-color);
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.php-email-form .form-control {
+  background-color: rgba(10, 10, 15, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--default-color);
+  border-radius: 30px;
+  padding: 12px 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.php-email-form textarea.form-control {
+  border-radius: 20px;
+}
+
+.php-email-form .form-control:focus {
+  background-color: rgba(10, 10, 15, 0.8);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color), transparent 80%);
+  outline: none;
+}
+
+.php-email-form .form-control::placeholder {
+  color: color-mix(in srgb, var(--default-color), transparent 50%);
+}
+
+.php-email-form label {
+  color: var(--heading-color);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.php-email-form button[type="submit"] {
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+  border: 0;
+  padding: 12px 30px;
+  color: var(--contrast-color);
+  transition: all 0.4s;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px color-mix(in srgb, var(--accent-color), transparent 60%);
+  margin-top: 15px;
+}
+
+.php-email-form button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--accent-color), transparent 40%);
+}
+
 .php-email-form .error-message {
   display: none;
-  background: #df1529;
-  color: #ffffff;
+  background: rgba(223, 21, 41, 0.1);
+  border-left: 4px solid #df1529;
+  color: #ffb4b4;
   text-align: left;
   padding: 15px;
   margin-bottom: 24px;
-  font-weight: 600;
+  font-weight: 500;
+  border-radius: 4px;
+  backdrop-filter: blur(5px);
 }
 
 .php-email-form .sent-message {
   display: none;
-  color: #ffffff;
-  background: #059652;
+  background: rgba(5, 150, 82, 0.1);
+  border-left: 4px solid #059652;
+  color: #a7f3d0;
   text-align: center;
   padding: 15px;
   margin-bottom: 24px;
-  font-weight: 600;
+  font-weight: 500;
+  border-radius: 4px;
+  backdrop-filter: blur(5px);
 }
 
 .php-email-form .loading {
   display: none;
-  background: var(--surface-color);
+  background: transparent;
+  color: var(--default-color);
   text-align: center;
   padding: 15px;
   margin-bottom: 24px;
+  font-weight: 500;
 }
 
 .php-email-form .loading:before {
@@ -128,8 +206,8 @@ h6 {
   width: 24px;
   height: 24px;
   margin: 0 10px -6px 0;
-  border: 3px solid var(--accent-color);
-  border-top-color: var(--surface-color);
+  border: 3px solid var(--accent-secondary);
+  border-top-color: transparent;
   animation: php-email-form-loading 1s linear infinite;
 }
 
@@ -656,8 +734,9 @@ section,
 
 
 /*--------------------------------------------------------------
-# Skills Section
+# Skills Section (Premium Modern Aesthetic)
 --------------------------------------------------------------*/
+<<<<<<< HEAD
 .skills .skill-card {
   background: var(--surface-color);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -714,6 +793,55 @@ section,
   margin-bottom: 1rem;
 }
 
+=======
+.skills .progress {
+  height: auto;
+  display: block;
+  background: none;
+  border-radius: 0;
+  margin-bottom: 30px;
+}
+
+.skills .progress .skill {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 12px 0;
+  padding: 0;
+  font-family: var(--nav-font);
+}
+
+.skills .progress .skill span {
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--heading-color);
+  letter-spacing: 0.5px;
+}
+
+.skills .progress .skill .val {
+  font-weight: 700;
+  color: var(--accent-secondary);
+  font-style: normal;
+  font-family: var(--heading-font);
+}
+
+.skills .progress-bar-wrap {
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  height: 8px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.skills .progress-bar {
+  width: 1px;
+  height: 8px;
+  border-radius: 12px;
+  transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
+  box-shadow: 0 0 10px color-mix(in srgb, var(--accent-secondary), transparent 70%);
+}
+>>>>>>> 9c9e1bd8a7c7699038495fa5ed9c86f60b1d6350
 
 /*--------------------------------------------------------------
 # Resume Section
@@ -1102,15 +1230,26 @@ section,
 }
 
 .contact .php-email-form input[type=text],
-.contact .php-email-form input[type=email],
+.contact .php-email-form input[type=email] {
+  font-size: 14px;
+  padding: 12px 20px;
+  box-shadow: none;
+  border-radius: 30px;
+  color: var(--default-color);
+  background-color: rgba(10, 10, 15, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
 .contact .php-email-form textarea {
   font-size: 14px;
-  padding: 10px 15px;
+  padding: 12px 20px;
   box-shadow: none;
-  border-radius: 0;
+  border-radius: 20px;
   color: var(--default-color);
-  background-color: var(--surface-color);
-  border-color: color-mix(in srgb, var(--default-color), transparent 80%);
+  background-color: rgba(10, 10, 15, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease-in-out;
 }
 
 .contact .php-email-form input[type=text]:focus,
@@ -1268,6 +1407,7 @@ section,
 # Custom Aesthetic Utilities (Glassmorphism & Animation)
 --------------------------------------------------------------*/
 
+<<<<<<< HEAD
 /* Gradient Animation Background */
 .gradient-bg {
   background: var(--background-color);
@@ -1283,6 +1423,11 @@ section,
 .gradient-text {
   color: var(--accent-color);
 }
+=======
+/* Gradient Background Removed */
+
+/* Vibrant Text Removed */
+>>>>>>> 9c9e1bd8a7c7699038495fa5ed9c86f60b1d6350
 
 /* Glassmorphism Classes */
 .glass-panel {
@@ -1363,7 +1508,7 @@ section,
   height: 4px;
   background: var(--accent-color);
   z-index: 100000;
-  box-shadow: 0 0 10px var(--accent-secondary);
+  box-shadow: 0 0 10px var(--accent-color);
 }
 
 .header .profile-img img {
@@ -1378,20 +1523,22 @@ section,
 
 /* Section specific enhancements */
 .about .content {
-    background: transparent;
+  background: transparent;
 }
+
 .about img {
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .resume .resume-item::before {
-    border-color: var(--accent-secondary);
-    box-shadow: 0 0 10px var(--accent-secondary);
+  border-color: var(--accent-secondary);
+  box-shadow: 0 0 10px var(--accent-secondary);
 }
+
 .resume .resume-item {
-    border-left: 2px solid var(--accent-secondary);
+  border-left: 2px solid var(--accent-secondary);
 }
 
 /* Enhanced scrollbar */
@@ -1399,6 +1546,7 @@ section,
 # Futuristic Global Enhancements
 --------------------------------------------------------------*/
 
+<<<<<<< HEAD
 /* Section Titles */
 .section-title h2 {
   font-size: 3.5rem;
@@ -1445,61 +1593,66 @@ section,
     0% { transform: translateX(-100%); }
     100% { transform: translateX(100%); }
 }
+=======
+/* Section Titles Enhancements Removed */
+/* Pulsing Neon Progress Bars Removed for clean aesthetic */
+>>>>>>> 9c9e1bd8a7c7699038495fa5ed9c86f60b1d6350
 
 /* Futuristic List Items (Resume) */
 .resume .resume-item {
-    background: var(--surface-color);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 30px;
-    margin-bottom: 30px;
-    transition: all 0.4s ease;
+  background: var(--surface-color);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 30px;
+  transition: all 0.4s ease;
 }
 
 .resume .resume-item:hover {
-    border-color: var(--accent-color);
-    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.1);
-    transform: translateX(10px);
+  border-color: var(--accent-color);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.1);
+  transform: translateX(10px);
 }
 
 .resume .resume-item h5 {
-    background: rgba(139, 92, 246, 0.1);
-    color: var(--accent-color);
-    border: 1px solid var(--accent-color);
-    border-radius: 5px;
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 5px;
 }
 
 /* Glowing Service Icons */
 .services .service-item .icon {
-    width: 70px;
-    height: 70px;
-    background: rgba(6, 182, 212, 0.1);
-    border: 1px solid var(--accent-secondary);
-    box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
-    margin-bottom: 25px;
-    transition: all 0.4s ease;
+  width: 70px;
+  height: 70px;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid var(--accent-secondary);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+  margin-bottom: 25px;
+  transition: all 0.4s ease;
 }
 
 .services .service-item:hover .icon {
-    background: var(--accent-secondary);
-    transform: rotateY(180deg);
+  background: var(--accent-secondary);
+  transform: rotateY(180deg);
 }
 
 /* Contact Form Neon */
 .contact .php-email-form {
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.contact .php-email-form input:focus, 
+.contact .php-email-form input:focus,
 .contact .php-email-form textarea:focus {
-    border-color: var(--accent-secondary) !important;
-    box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+  border-color: var(--accent-secondary) !important;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
 }
 
 /* Magnetic Button Effect (Utility) */
 .btn-futuristic {
+<<<<<<< HEAD
     padding: 12px 35px;
     border-radius: 50px;
     background: var(--accent-color);
@@ -1520,23 +1673,48 @@ section,
     opacity: 0;
     transition: opacity 0.4s ease;
     z-index: -1;
+=======
+  padding: 12px 35px;
+  border-radius: 50px;
+  background: var(--accent-color);
+  color: white;
+  font-weight: 600;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  z-index: 1;
+}
+
+.btn-futuristic::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent-color);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+>>>>>>> 9c9e1bd8a7c7699038495fa5ed9c86f60b1d6350
 }
 
 .btn-futuristic:hover {
-    transform: scale(1.05) translateY(-3px);
-    box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4);
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4);
 }
 
 .btn-futuristic:hover::before {
-    opacity: 1;
+  opacity: 1;
 }
 
 /* Futuristic Grid Background for sections */
 .section-grid {
-    background-image: 
-        linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
 }
 
 /*--------------------------------------------------------------
@@ -1545,26 +1723,53 @@ section,
 
 /* Floating Animation */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 @keyframes float-delayed {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 @keyframes float-side {
-  0%, 100% { transform: translate(0, 0); }
-  33% { transform: translate(10px, -15px); }
-  66% { transform: translate(-10px, -10px); }
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  33% {
+    transform: translate(10px, -15px);
+  }
+
+  66% {
+    transform: translate(-10px, -10px);
+  }
 }
 
 /* Neon Text Animation */
 @keyframes neon-glow {
-  0%, 100% {
+
+  0%,
+  100% {
     text-shadow: 0 0 10px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.3);
   }
+
   50% {
     text-shadow: 0 0 20px rgba(6, 182, 212, 0.8), 0 0 40px rgba(6, 182, 212, 0.5);
   }
@@ -1619,9 +1824,26 @@ section,
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-.card-1 { top: 20%; left: 10%; width: 200px; animation-duration: 7s; }
-.card-2 { top: 60%; right: 10%; width: 180px; animation-duration: 9s; }
-.card-3 { bottom: 15%; left: 15%; width: 150px; animation-duration: 11s; }
+.card-1 {
+  top: 20%;
+  left: 10%;
+  width: 200px;
+  animation-duration: 7s;
+}
+
+.card-2 {
+  top: 60%;
+  right: 10%;
+  width: 180px;
+  animation-duration: 9s;
+}
+
+.card-3 {
+  bottom: 15%;
+  left: 15%;
+  width: 150px;
+  animation-duration: 11s;
+}
 
 @media (max-width: 992px) {
   .floating-card {
@@ -1635,7 +1857,7 @@ section,
     animation: none !important;
     transform: none !important;
   }
-  
+
   .hero-content-wrapper {
     flex-direction: column;
     align-items: center;
@@ -1643,7 +1865,13 @@ section,
 }
 
 .gradient-bg {
+<<<<<<< HEAD
   background: var(--background-color);
+=======
+  background: radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.15) 0%, transparent 40%),
+    #0a0a0f;
+>>>>>>> 9c9e1bd8a7c7699038495fa5ed9c86f60b1d6350
   position: relative;
   overflow: hidden;
 }
