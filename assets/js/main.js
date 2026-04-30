@@ -106,8 +106,6 @@
   }
 
 
-<<<<<<< HEAD
-=======
   /**
    * Animate the skills items on reveal with stagger & counter
    */
@@ -155,7 +153,6 @@
       }
     });
   });
->>>>>>> 9c9e1bd8a7c7699038495fa5ed9c86f60b1d6350
 
   /**
    * Initiate glightbox
